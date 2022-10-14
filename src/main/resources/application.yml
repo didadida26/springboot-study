@@ -1,0 +1,38 @@
+spring:
+  profiles:
+    active: ${profile.active} # 启动的环境 引用Maven属性
+#  指定参数 --server.port=8888 --spring.profiles.active=test
+
+  # 配置数据库连接参数
+  datasource:
+    url: jdbc:mysql://localhost:3306/test
+    driver-class-name: com.mysql.jdbc.Driver
+    password: 123456
+    username: root
+    type: com.alibaba.druid.pool.DruidDataSource
+---
+# 生产环境
+spring:
+  config:
+    activate:
+      on-profile: pro
+server:
+  port: 8082
+---
+# 测试环境
+spring:
+  config:
+    activate:
+      on-profile: test
+server:
+  port: 8081
+---
+# 开发环境
+spring:
+  config:
+    activate:
+      on-profile: dev
+server:
+  port: 8080
+
+
